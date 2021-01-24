@@ -1,0 +1,12 @@
+[All containers setting]
+adduser virl
+gpasswd -a virl sudo
+visudo >> virl  ALL=NOPASSWD: ALL
+su virl
+groups
+service ssh start
+
+[ansible server side]
+ssh-keygen -t rsa -f $HOME/.ssh/id_rsa -N ""
+ssh-copy-id virl@172.16.1.191
+ssh-copy-id virl@172.16.1.192

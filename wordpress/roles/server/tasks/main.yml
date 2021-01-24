@@ -1,0 +1,20 @@
+---
+- name: apt update
+  apt:
+    update_cache: yes
+
+- name: Install required software
+  apt:
+    name:
+      - apache2
+      - mariadb-server
+      - mariadb-client
+      - php7.4-mysql
+      - php7.4
+      - python3-pymysql
+
+- name: enabled apache2
+  service:
+    name: apache2
+    state: started
+    enabled: yes

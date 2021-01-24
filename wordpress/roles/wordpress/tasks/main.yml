@@ -1,0 +1,25 @@
+---
+
+- name: Download WordPress
+  get_url:
+    url=https://wordpress.org/latest.tar.gz
+    dest=/tmp/latest.tar.gz
+    validate_certs=no
+
+- name: Extract WordPress
+  unarchive: src=/tmp/latest.tar.gz dest=/var/www/ copy=no
+
+- name: Permission
+  file: path=/var/www/wordpress owner=www-data group=www-data recurse=yes
+
+- name: Update default Apache site
+  lineinfile:
+    dest=/etc/apache2/sites-enabled/000-default.conf
+    regexp="(.)+DocumentRoot /var/www/html"
+    line="DocumentRoot /var/www/wordpress"
+    
+- name: enabled apache2
+  service:
+    name: apache2
+    state: restarted
+    enabled: yes

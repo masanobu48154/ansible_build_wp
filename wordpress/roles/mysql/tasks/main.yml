@@ -1,0 +1,21 @@
+---
+
+- name: enabled mysql
+  service:
+    name: mysql
+    state: started
+    enabled: yes
+
+- name: cretate database
+  command: mysql --user root --password=Cisco.virl777 --execute="CREATE DATABASE wordpress DEFAULT CHARACTER SET utf8;"
+  ignore_errors: yes
+
+- debug:
+    msg: 'Continue'
+
+- name: create user granted all
+  command: mysql --user root --password=Cisco.virl777 --execute="GRANT ALL ON wordpress.* TO virl@'%' IDENTIFIED BY 'Cisco.virl777';"
+  ignore_errors: yes
+
+- debug:
+    msg: 'Continue'
