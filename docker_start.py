@@ -37,7 +37,7 @@ cmd_run_web_container = [
 ]
 cmd_run_db_container = [
     "docker", "run", "-it", "-d", "--name", "db", "--network", "macvlan",
-    "--ip", env_object.my_env["web_addr"], "mariadb"
+    "--ip", env_object.my_env["db_addr"], "mariadb"
 ]
 
 ansible_containaer_path = './docker_file/ansible/'
