@@ -42,7 +42,7 @@ cmd_run_db_container = [
 
 ansible_containaer_path = './docker_file/ansible/'
 web_container_path = './docker_file/web/'
-db_containaer_path = './docker_file/db/'
+db_container_path = './docker_file/db/'
 root_path = '../../'
 
 subprocess.run(cmd_create_macvlan)
