@@ -1,5 +1,6 @@
 ---
-- name: apt update
+
+- name: Apt update
   apt:
     update_cache: yes
 
@@ -7,10 +8,6 @@
   apt:
     name:
       - apache2
-      - mariadb-server
-      - mariadb-client
-      - php7.4-mysql
-      - php7.4
       - python3-pymysql
 
 - name: enabled apache2

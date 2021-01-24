@@ -1,19 +1,29 @@
 ---
 
-- name: enabled mysql
+- name: Apt update
+  apt:
+    update_cache: yes
+
+- name: Install required software
+  apt:
+    name:
+      - mariadb-server
+      - mariadb-client
+
+- name: Enabled mysql
   service:
     name: mysql
     state: started
     enabled: yes
 
-- name: cretate database
+- name: Cretate database
   command: mysql --user root --password=Cisco.virl777 --execute="CREATE DATABASE wordpress DEFAULT CHARACTER SET utf8;"
   ignore_errors: yes
 
 - debug:
     msg: 'Continue'
 
-- name: create user granted all
+- name: Create user and Grant all
   command: mysql --user root --password=Cisco.virl777 --execute="GRANT ALL ON wordpress.* TO virl@'%' IDENTIFIED BY 'Cisco.virl777';"
   ignore_errors: yes
 

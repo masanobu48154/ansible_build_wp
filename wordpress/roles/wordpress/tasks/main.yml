@@ -9,7 +9,7 @@
 - name: Extract WordPress
   unarchive: src=/tmp/latest.tar.gz dest=/var/www/ copy=no
 
-- name: Permission
+- name: Fix Permission
   file: path=/var/www/wordpress owner=www-data group=www-data recurse=yes
 
 - name: Update default Apache site
@@ -17,7 +17,7 @@
     dest=/etc/apache2/sites-enabled/000-default.conf
     regexp="(.)+DocumentRoot /var/www/html"
     line="DocumentRoot /var/www/wordpress"
-    
+
 - name: enabled apache2
   service:
     name: apache2
