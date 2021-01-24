@@ -40,7 +40,7 @@ cmd_run_db_container = [
     "--ip", env_object.my_env["web_addr"], "mariadb"
 ]
 
-ansible_containaer_path = './docker_file/snsible/'
+ansible_containaer_path = './docker_file/ansible/'
 web_container_path = './docker_file/web/'
 db_containaer_path = './docker_file/db/'
 root_path = '../../'
@@ -54,7 +54,7 @@ os.chdir(root_path)
 os.chdir(web_containaer_path)
 subprocess.run(cmd_build_web_container)
 os.chdir(root_path)
-os.chdir(db_containaer_path)
+os.chdir(db_container_path)
 subprocess.run(cmd_build_db_container)
 subprocess.run(cmd_run_snsible_container)
 subprocess.run(cmd_run_web_container)
