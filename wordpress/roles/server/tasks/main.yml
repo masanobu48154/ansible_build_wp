@@ -9,6 +9,8 @@
     name:
       - apache2
       - python3-pymysql
+      - mariadb-server
+      - mariadb-client
 
 - name: enabled apache2
   service:
