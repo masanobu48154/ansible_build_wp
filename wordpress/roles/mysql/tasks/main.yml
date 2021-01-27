@@ -8,7 +8,12 @@
   apt:
     name:
       - mariadb-server
-      - mariadb-client
+
+- name: Update default Apache site
+  lineinfile:
+    dest=/etc/mysql/mariadb.conf.d/50-server.cnf
+    regexp="(.)+bind-address            = 127.0.0.1"
+    line="bind-address            = 0.0.0.0"
 
 - name: Enabled mysql
   service:
