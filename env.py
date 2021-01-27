@@ -11,6 +11,5 @@ class MyEnv:
             "web_addr": "<wev_container_ip_address>",
             "db_addr": "<db_container_ip_address>",
             "phsical_nic": "<NIC name of docker host>",
-            #"db_password": "<mysql_password>"
-            "db_password": "Cisco.virl777"
+            "db_password": "<mysql_password>"
         }
