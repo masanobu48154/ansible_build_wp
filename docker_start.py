@@ -40,14 +40,23 @@ cmd_run_db_container = [
     "--ip", env_object.my_env["db_addr"], "mariadb"
 ]
 
+inventory_path = './wordpress/inventory'
 ansible_containaer_path = './docker_file/ansible/'
 web_container_path = './docker_file/web/'
 db_container_path = './docker_file/db/'
 root_path = '../../'
 
+inventory = {
+    "[web]" : env_object.my_env["web_addr"],
+    "[db]" : env_object.my_env["db_addr"]
+}
+
+with open(inventory_path, mode="w") as f:
+    f.write(f'[web]\n{inventory["[web]"]}\n')
+    f.write(f'[db]\n{inventory["[db]"]}\n')
+
 subprocess.run(cmd_create_macvlan)
 subprocess.run(tar_ansible_file)
-
 os.chdir(ansible_containaer_path)
 subprocess.run(cmd_build_ansible_container)
 os.chdir(root_path)
