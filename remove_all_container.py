@@ -29,9 +29,19 @@ cmd_rm_macvlan_network = [
 rm_wordpress_data = [
     "rm", "wordpress.tar.gz"
 ]
+rm_inventory_data = [
+    "rm", "inventory"
+]
+rm_db_defaults_data = [
+    "rm", "main.yml"
+]
 
 ansible_containaer_path = './docker_file/ansible/'
+inventory_path = './wordpress/'
+db_defaults_path = './wordpress/roles/mysql/defaults/'
 root_path = '../../'
+root_path1 = '../'
+root_path2 = '../../../../'
 
 subprocess.run(cmd_rm_ansible_container)
 subprocess.run(cmd_rm_apache2_container)
@@ -43,3 +53,9 @@ subprocess.run(cmd_rm_macvlan_network)
 os.chdir(ansible_containaer_path)
 subprocess.run(rm_wordpress_data)
 os.chdir(root_path)
+os.chdir(inventory_path)
+subprocess.run(rm_inventory_data)
+os.chdir(root_path1)
+os.chdir(db_defaults_path)
+subprocess.run(rm_db_defaults_data)
+os.chdir(root_path2)

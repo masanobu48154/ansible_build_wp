@@ -41,6 +41,7 @@ cmd_run_db_container = [
 ]
 
 inventory_path = './wordpress/inventory'
+db_defaults_path = './wordpress/roles/mysql/defaults/main.yml'
 ansible_containaer_path = './docker_file/ansible/'
 web_container_path = './docker_file/web/'
 db_container_path = './docker_file/db/'
@@ -50,10 +51,16 @@ inventory = {
     "[web]" : env_object.my_env["web_addr"],
     "[db]" : env_object.my_env["db_addr"]
 }
+defaults = {
+    "mysql_password" : env_object.my_env["db_password"],
+}
 
 with open(inventory_path, mode="w") as f:
     f.write(f'[web]\n{inventory["[web]"]}\n')
     f.write(f'[db]\n{inventory["[db]"]}\n')
+with open(db_defaults_path, mode="w") as f:
+    f.write('---\n')
+    f.write(f'mysql_password: {defaults["mysql_password"]}\n')
 
 subprocess.run(cmd_create_macvlan)
 subprocess.run(tar_ansible_file)

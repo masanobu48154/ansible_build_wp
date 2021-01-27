@@ -10,5 +10,7 @@ class MyEnv:
             "ansible_addr": "<ansible_container_ip_address>",
             "web_addr": "<wev_container_ip_address>",
             "db_addr": "<db_container_ip_address>",
-            "phsical_nic": "<NIC name of docker host>"
+            "phsical_nic": "<NIC name of docker host>",
+            #"db_password": "<mysql_password>"
+            "db_password": "Cisco.virl777"
         }
