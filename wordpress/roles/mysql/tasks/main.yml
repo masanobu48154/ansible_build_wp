@@ -29,7 +29,7 @@
     msg: 'Continue'
 
 - name: Create user and Grant all
-  command: mysql --user root --"{{mysql_password}}" --execute="GRANT ALL ON wordpress.* TO virl@'%' IDENTIFIED BY 'Cisco.virl777';"
+  command: mysql --user root --password="{{mysql_password}}" --execute="GRANT ALL ON wordpress.* TO virl@'%' IDENTIFIED BY 'Cisco.virl777';"
   ignore_errors: yes
 
 - debug:
