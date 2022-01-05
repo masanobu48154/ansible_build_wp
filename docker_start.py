@@ -7,6 +7,14 @@ import env
 
 env_object = env.MyEnv()
 
+cmd_get_wordpress_latest = [
+    "wget", "https://wordpress.org/latest.tar.gz"
+]
+
+cmd_mv_wordpress_latest = [
+    "mv", "latest.tar.gz", "./docker_file/ansible/"
+]
+
 cmd_create_macvlan = [
     "docker", "network", "create", "-d", "macvlan",
     "--subnet={0}".format(env_object.my_env["subnet"]),
@@ -15,7 +23,7 @@ cmd_create_macvlan = [
     "macvlan"
 ]
 tar_ansible_file = [
-    "tar", "-zcvf", "./docker_file/ansible/wordpress.tar.gz",
+    "tar", "-zcvf", "./docker_file/ansible/latest-ja.tar.gz",
     "wordpress/"
 ]
 cmd_build_ansible_container = [
@@ -62,6 +70,8 @@ with open(db_defaults_path, mode="w") as f:
     f.write('---\n')
     f.write(f'mysql_password: {defaults["mysql_password"]}\n')
 
+subprocess.run(cmd_get_wordpress_latest)
+subprocess.run(cmd_mv_wordpress_latest)
 subprocess.run(cmd_create_macvlan)
 subprocess.run(tar_ansible_file)
 os.chdir(ansible_containaer_path)
